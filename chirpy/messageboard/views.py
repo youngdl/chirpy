@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.http.response import HttpResponseNotAllowed
 from django.template import loader
 
 
@@ -8,6 +9,7 @@ def index(request):
 
 
 def post_message(request):
-    # TODO: check request is get/post
     # TODO: Write data into db
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
     return HttpResponse('Hello World')
